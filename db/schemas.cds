@@ -1,5 +1,7 @@
-using { Currency, User, managed, cuid, sap.common.CodeList } from '@sap/cds/common';
+
 namespace mngt.orders;
+
+using { Currency, User, managed, cuid, sap.common.CodeList } from '@sap/cds/common';
 
 entity Orders : cuid, managed {
   OrderNo  : String(22) @title:'Order Number'; //> chave de leitura
