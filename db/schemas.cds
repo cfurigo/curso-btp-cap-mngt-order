@@ -4,11 +4,13 @@ namespace mngt.orders;
 using { Currency, User, managed, cuid, sap.common.CodeList } from '@sap/cds/common';
 
 entity Orders : cuid, managed {
+  //key ID   : UUID;
   OrderNo  : String(22) @title:'Order Number'; //> chave de leitura
   Items    : Composition of many {
     key ID    : UUID;
     product   : Association to Products;
     quantity  : Integer;
+    unit: Association to Mensure;
     title  : String; //> sera populado pelo product.title
     price     : Double; //> campo calculado
   };
@@ -18,16 +20,19 @@ entity Orders : cuid, managed {
   status_txt : String;
   criticality : Integer;
   netAmmount: Double; 
+  qtyTotal: Integer;
+  unit: Association to Mensure;
 }
 
 /** entidade de produtos não será persistida */
-entity Products @(cds.persistence.skip:'always') {
+//@(cds.persistence.skip:'always')
+entity Products {
   key ID : String;
-  quantity: Decimal(13,2);
+  quantity: Integer;
+  unitMensure: Association to Mensure;
   product_ID: String;
   title: String;
   price: Double;  
-  unitMensure: Association to Mensure;
 }
 
 entity Status : CodeList {
@@ -39,7 +44,7 @@ entity Status : CodeList {
 }
 
 entity Mensure : CodeList {
-  key code: String enum {
+  key code: String(2) enum {
       kilo = 'KG';
       unit = 'UN'; 
   };

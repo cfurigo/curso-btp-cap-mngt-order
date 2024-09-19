@@ -9,24 +9,31 @@ class OrdersService extends cds.ApplicationService {
 
       const orders = Array.isArray(data) ? data : [data];
       let totalAmmount;
+      let totalQty;
+      let lastunit;
 
       for (let order of orders) {
         //Atualiza valor total da Ordem
         totalAmmount = 0;
+        totalQty = 0;
         let Order_Items = await SELECT.from (OrderItems).where `up__ID=${order.ID}`;
         for (let i of Order_Items) {
           totalAmmount = totalAmmount + (i.quantity * i.price);
+          totalQty = totalQty + i.quantity;
+          lastunit = i.unit_code;
         }
         order.netAmmount = totalAmmount;
+        order.qtyTotal = totalQty;
+        order.unit = lastunit;
 
         // atualiza criticidade
         switch (order.status_code) {
           case 'N': //Novo
-              order.criticality = 2;
+              order.criticality = 1;
               order.status_txt = 'New';
               break;
           case 'A': //Aprovado
-              order.criticality = 0;
+              order.criticality = 2;
               order.status_txt = 'Approved';
               break;
           case 'C': //Concluido

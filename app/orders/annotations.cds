@@ -33,6 +33,11 @@ annotate service.Orders with @(
                 Criticality : criticality,
                 CriticalityRepresentation : #WithIcon,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : qtyTotal,
+                Label : '{i18n>TotalQuantity}',
+            },
         ],
     },
     UI.Facets : [
@@ -97,6 +102,29 @@ annotate service.Orders with @(
         Data : [
         ],
     },
+    UI.DataPoint #progress : {
+        $Type : 'UI.DataPointType',
+        Value : criticality,
+        Title : '{i18n>Status}',
+        TargetValue : 3,
+        Visualization : #Progress,
+        Description : '{i18n>Phase}',
+        ![@Common.QuickInfo] : status.name,
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'criticality',
+            Target : '@UI.DataPoint#progress',
+        },
+    ],
+    UI.DataPoint #rating : {
+        $Type : 'UI.DataPointType',
+        Value : netAmmount,
+        Title : 'netAmmount',
+        TargetValue : 5,
+        Visualization : #Rating,
+    },
 );
 
 annotate service.Orders with {
@@ -117,7 +145,7 @@ annotate service.Orders with {
             ],
             Label : 'Status',
         },
-        Common.ValueListWithFixedValues : true,
+        Common.ValueListWithFixedValues : false,
     )
 };
 
@@ -182,10 +210,72 @@ annotate service.Orders.Items with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : price,
-            Label : 'price',
+            Value : unit_code,
+            Label : '{i18n>Unit}',
+            ![@UI.Importance] : #Medium,
         },
-    ]
+        {
+            $Type : 'UI.DataField',
+            Value : price,
+            Label : '{i18n>Price}',
+            ![@UI.Importance] : #High,
+        },
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Item Detail',
+            ID : 'ItemDetail',
+            Target : '@UI.FieldGroup#ItemDetail',
+        },
+    ],
+    UI.Identification : [
+        
+    ],
+    UI.FieldGroup #ItemDetail : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : up_.Items.product_ID,
+                Label : '{i18n>Product}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : up_.Items.title,
+                Label : '{i18n>Title}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : up_.Items.quantity,
+                Label : '{i18n>Quantity}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : up_.Items.unit_code,
+                Label : '{i18n>Unit}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : up_.Items.price,
+                Label : '{i18n>Price}',
+            },
+        ],
+    },
+    UI.DataPoint #rating : {
+        $Type : 'UI.DataPointType',
+        Value : quantity,
+        Title : '{i18n>RatingBasedOnQuantity}',
+        TargetValue : 5,
+        Visualization : #Rating,
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'quantity',
+            Target : '@UI.DataPoint#rating',
+        },
+    ],
 );
 
 annotate service.Orders.Items with {
@@ -205,7 +295,7 @@ annotate service.Orders.Items with {
             ],
             Label : 'Products',
         },
-        Common.ValueListWithFixedValues : true
+        Common.ValueListWithFixedValues : false
 )};
 
 annotate service.Products with {
@@ -217,7 +307,7 @@ annotate service.Products with {
 
 annotate service.Status with {
     code @Common.Text : {
-        $value : name,
+        $value : descr,
         ![@UI.TextArrangement] : #TextLast,
     }
 };
@@ -234,6 +324,20 @@ annotate service.Orders.Items with {
 };
 
 annotate service.Orders.Items with {
-    quantity @Measures.Unit : product.unitMensure_code
+    price @Common.FieldControl : #ReadOnly
+};
+
+annotate service.Orders.Items with {
+    unit @Common.ValueListWithFixedValues : true
+};
+
+annotate service.Mensure with {
+    code @Common.Text : descr
+};
+
+annotate service.Orders with {
+    qtyTotal @(
+        Common.FieldControl : #ReadOnly,
+        )
 };
 
