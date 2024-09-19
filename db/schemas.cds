@@ -21,7 +21,6 @@ entity Orders : cuid, managed {
   criticality : Integer;
   netAmmount: Double; 
   qtyTotal: Integer;
-  unit: Association to Mensure;
 }
 
 /** entidade de produtos não será persistida */

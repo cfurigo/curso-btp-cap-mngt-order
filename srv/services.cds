@@ -12,7 +12,7 @@ service OrderService {
             to : [ 'Viewer', 'Manager' ]
         }
     ])
-    entity Orders as projection on ord.Orders;
+    entity Orders as projection on ord.Orders order by OrderNo asc;
     @readonly
     entity Products as projection on ord.Products;
 }

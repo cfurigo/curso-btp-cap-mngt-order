@@ -44,7 +44,7 @@ annotate service.Orders with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : '{i18n>OrderDetail}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
         {
@@ -125,6 +125,19 @@ annotate service.Orders with @(
         TargetValue : 5,
         Visualization : #Rating,
     },
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : OrderNo,
+        },
+        TypeName : 'Order',
+        TypeNamePlural : 'Orders',
+        TypeImageUrl : 'sap-icon://my-sales-order',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : '{i18n>OrderNumber}',
+        },
+    },
 );
 
 annotate service.Orders with {
@@ -145,7 +158,7 @@ annotate service.Orders with {
             ],
             Label : 'Status',
         },
-        Common.ValueListWithFixedValues : false,
+        Common.ValueListWithFixedValues : true,
     )
 };
 
@@ -237,28 +250,33 @@ annotate service.Orders.Items with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : up_.Items.product_ID,
+                Value : ID,
+                Label : '{i18n>ItemId}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : product_ID,
                 Label : '{i18n>Product}',
             },
             {
                 $Type : 'UI.DataField',
-                Value : up_.Items.title,
-                Label : '{i18n>Title}',
+                Value : title,
+                Label : '{i18n>Description}',
             },
             {
                 $Type : 'UI.DataField',
-                Value : up_.Items.quantity,
+                Value : quantity,
                 Label : '{i18n>Quantity}',
             },
             {
                 $Type : 'UI.DataField',
-                Value : up_.Items.unit_code,
-                Label : '{i18n>Unit}',
+                Value : price,
+                Label : '{i18n>Price}',
             },
             {
                 $Type : 'UI.DataField',
-                Value : up_.Items.price,
-                Label : '{i18n>Price}',
+                Value : unit_code,
+                Label : '{i18n>MensureUnit}',
             },
         ],
     },
@@ -276,6 +294,19 @@ annotate service.Orders.Items with @(
             Target : '@UI.DataPoint#rating',
         },
     ],
+    UI.HeaderInfo : {
+        TypeName : '{i18n>Item}',
+        TypeNamePlural : '{i18n>Items}',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : title,
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : '{i18n>Product}',
+        },
+        TypeImageUrl : 'sap-icon://customer-order-entry',
+    },
 );
 
 annotate service.Orders.Items with {
@@ -295,7 +326,8 @@ annotate service.Orders.Items with {
             ],
             Label : 'Products',
         },
-        Common.ValueListWithFixedValues : false
+        Common.ValueListWithFixedValues : false,
+        Common.FieldControl : #Mandatory,
 )};
 
 annotate service.Products with {
@@ -324,15 +356,17 @@ annotate service.Orders.Items with {
 };
 
 annotate service.Orders.Items with {
-    price @Common.FieldControl : #ReadOnly
-};
-
-annotate service.Orders.Items with {
-    unit @Common.ValueListWithFixedValues : true
+    price @(
+        Common.FieldControl : #ReadOnly,
+        Measures.ISOCurrency : up_.currency_code,
+    )
 };
 
 annotate service.Mensure with {
-    code @Common.Text : descr
+    code @Common.Text : {
+        $value : descr,
+        ![@UI.TextArrangement] : #TextLast
+    }
 };
 
 annotate service.Orders with {
@@ -340,4 +374,24 @@ annotate service.Orders with {
         Common.FieldControl : #ReadOnly,
         )
 };
+
+annotate service.Orders.Items with {
+    quantity @Common.FieldControl : #Mandatory
+};
+
+annotate service.Orders.Items with {
+    unit @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Mensure',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : unit_code,
+                    ValueListProperty : 'code',
+                },
+            ],
+            Label : 'Unit',
+        },
+        Common.ValueListWithFixedValues : true
+)};
 

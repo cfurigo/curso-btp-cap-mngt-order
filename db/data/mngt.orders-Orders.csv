@@ -1,4 +1,4 @@
 ID,OrderNo,buyer,currency_code,createdAt,createdBy,modifiedAt,modifiedBy,status_code
-7e2f2640-6866-4dcf-8f4d-3027aa831cad,1,0000000001,USD,2024-09-01,carlos@test.com,2024-09-02,john@test.com,N
-64e718c9-ff99-47f1-8ca3-950c850777d4,2,0000000002,USD,2024-09-02,roberto@test.com,2024-09-05,jane@test.com,A
+7e2f2640-6866-4dcf-8f4d-3027aa831cad,2,0000000001,USD,2024-09-01,carlos@test.com,2024-09-02,john@test.com,N
 85e718c9-ff90-47f2-8ca4-950c850788b5,3,0000000003,EUR,2024-09-10,roberto@test.com,2024-09-15,jane@test.com,C
+64e718c9-ff99-47f1-8ca3-950c850777d4,1,0000000002,USD,2024-09-02,roberto@test.com,2024-09-05,jane@test.com,A

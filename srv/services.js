@@ -10,7 +10,6 @@ class OrdersService extends cds.ApplicationService {
       const orders = Array.isArray(data) ? data : [data];
       let totalAmmount;
       let totalQty;
-      let lastunit;
 
       for (let order of orders) {
         //Atualiza valor total da Ordem
@@ -20,11 +19,9 @@ class OrdersService extends cds.ApplicationService {
         for (let i of Order_Items) {
           totalAmmount = totalAmmount + (i.quantity * i.price);
           totalQty = totalQty + i.quantity;
-          lastunit = i.unit_code;
         }
         order.netAmmount = totalAmmount;
         order.qtyTotal = totalQty;
-        order.unit = lastunit;
 
         // atualiza criticidade
         switch (order.status_code) {
@@ -49,6 +46,7 @@ class OrdersService extends cds.ApplicationService {
 
     })
 
+    /*
     this.before ('UPDATE', 'Orders', async function(req) {
       const { ID, Items } = req.data
       if (Items) for (let { product_ID, quantity } of Items) {
@@ -66,6 +64,7 @@ class OrdersService extends cds.ApplicationService {
       )
       //if (Items) await Promise.all (Items.map(it => this.orderChanged (it.product_ID, -it.quantity)))
     })
+    */
 
     return super.init()
   }
