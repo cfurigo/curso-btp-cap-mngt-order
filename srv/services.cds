@@ -2,7 +2,6 @@ using { mngt.orders as ord } from '../db/schemas';
 
 @path: 'service/order'
 service OrderService {
-
     @(restrict : [
         {
             grant : [ 'WRITE' ],
@@ -14,6 +13,8 @@ service OrderService {
         }
     ])
     entity Orders as projection on ord.Orders;
+    @readonly
+    entity Products as projection on ord.Products;
 }
-annotate OrderService with @odata.draft.enabled;
-annotate OrderService with @odata.draft.bypass;
+annotate OrderService.Orders with @odata.draft.enabled;
+annotate OrderService.Orders with @odata.draft.bypass;

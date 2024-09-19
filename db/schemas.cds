@@ -15,6 +15,9 @@ entity Orders : cuid, managed {
   buyer    : User;
   currency : Currency;
   status   : Association to Status default 'N';
+  status_txt : String;
+  criticality : Integer;
+  netAmmount: Double; 
 }
 
 /** entidade de produtos não será persistida */
@@ -24,6 +27,7 @@ entity Products @(cds.persistence.skip:'always') {
   product_ID: String;
   title: String;
   price: Double;  
+  unitMensure: Association to Mensure;
 }
 
 entity Status : CodeList {
@@ -32,5 +36,11 @@ entity Status : CodeList {
       approved = 'A'; 
       closed = 'C'; 
   };
-  criticality : Integer;
+}
+
+entity Mensure : CodeList {
+  key code: String enum {
+      kilo = 'KG';
+      unit = 'UN'; 
+  };
 }

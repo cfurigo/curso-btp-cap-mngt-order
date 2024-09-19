@@ -139,6 +139,16 @@
                     "route": "Orders_ItemsObjectPage"
                   }
                 }
+              },
+              "controlConfiguration": {
+                "Items/@com.sap.vocabularies.UI.v1.LineItem#OrdersItems": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "creationMode": {
+                      "name": "Inline"
+                    }
+                  }
+                }
               }
             }
           }

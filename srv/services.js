@@ -3,7 +3,44 @@ class OrdersService extends cds.ApplicationService {
 
   /** registra fase + evento que irão executar a lógica de negocio */
   init(){
-    const { 'Orders.Items':OrderItems } = this.entities
+    const { 'Orders':Orders , 'Orders.Items':OrderItems } = this.entities
+
+    this.after('READ', Orders, async function(data) {
+
+      const orders = Array.isArray(data) ? data : [data];
+      let totalAmmount;
+
+      for (let order of orders) {
+        //Atualiza valor total da Ordem
+        totalAmmount = 0;
+        let Order_Items = await SELECT.from (OrderItems).where `up__ID=${order.ID}`;
+        for (let i of Order_Items) {
+          totalAmmount = totalAmmount + (i.quantity * i.price);
+        }
+        order.netAmmount = totalAmmount;
+
+        // atualiza criticidade
+        switch (order.status_code) {
+          case 'N': //Novo
+              order.criticality = 2;
+              order.status_txt = 'New';
+              break;
+          case 'A': //Aprovado
+              order.criticality = 0;
+              order.status_txt = 'Approved';
+              break;
+          case 'C': //Concluido
+              order.criticality = 3;
+              order.status_txt = 'Closed';
+              break;
+          default:
+              break;
+        }
+
+        console.log(order);
+      }
+
+    })
 
     this.before ('UPDATE', 'Orders', async function(req) {
       const { ID, Items } = req.data
@@ -11,7 +48,7 @@ class OrdersService extends cds.ApplicationService {
         const { quantity:before } = await cds.tx(req).run (
           SELECT.one.from (OrderItems, oi => oi.quantity) .where ({up__ID:ID, product_ID})
         )
-        if (quantity != before) await this.orderChanged (product_ID, quantity-before)
+        //if (quantity != before) await this.orderChanged (product_ID, quantity-before)
       }
     })
 
@@ -20,17 +57,10 @@ class OrdersService extends cds.ApplicationService {
       const Items = await cds.tx(req).run (
         SELECT.from (OrderItems, oi => { oi.product_ID, oi.quantity }) .where ({up__ID:ID})
       )
-      if (Items) await Promise.all (Items.map(it => this.orderChanged (it.product_ID, -it.quantity)))
+      //if (Items) await Promise.all (Items.map(it => this.orderChanged (it.product_ID, -it.quantity)))
     })
 
     return super.init()
-  }
-
-  /** order changed -> broadcast event */
-  orderChanged (product, deltaQuantity) {
-    // Emit events to inform subscribers about changes in orders
-    console.log ('> emitting:', 'OrderChanged', { product, deltaQuantity }) // eslint-disable-line no-console
-    return this.emit ('OrderChanged', { product, deltaQuantity })
   }
 
 }
