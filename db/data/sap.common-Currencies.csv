@@ -1,3 +1,3 @@
-code,symbol,minorUnit,name,descr
-EUR,€,Cent,Euro,European Euro
-USD,$,Cent,US Dollar,United States Dollar
+code,symbol,name,descr
+EUR,€,Euro,European Euro
+USD,$,US Dollar,United States Dollar

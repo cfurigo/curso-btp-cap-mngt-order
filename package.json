@@ -50,11 +50,11 @@
       "[production]": {
         "auth": "xsuaa",
         "destinations": true,
-        "html5-repo": true,
         "db": {
           "kind": "hana"
         }
-      }
+      },
+      "html5-repo": true  
     }
   },
   "sapux": [

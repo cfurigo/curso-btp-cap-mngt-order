@@ -9,7 +9,6 @@ modules:
   requires:
   - name: OrderManager-auth
   - name: OrderManager-db
-  - name: OrderManager-destination
   provides:
   - name: srv-api
     properties:
@@ -28,24 +27,6 @@ modules:
   - name: OrderManager-db
   parameters:
     buildpack: nodejs_buildpack
-
-- name: OrderManager
-  type: approuter.nodejs
-  path: app/router
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: srv-api
-      url: ~{srv-url}
-  - name: OrderManager-destination
-  - name: OrderManager-html5-runtime
-  - name: OrderManager-auth
-  parameters:
-    disk-quota: 256M
-    keep-existing-routes: true
-    memory: 256M
 
 - name: OrderManager-app-deployer
   type: com.sap.application.content
@@ -73,6 +54,37 @@ modules:
     - npm run build:cf
     supported-platforms: []
 
+- name: OrderManager-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: OrderManager-destination
+    parameters:
+      content-target: true
+  - name: OrderManager-html5-repo-host
+    parameters:
+      service-key:
+        name: OrderManager-html5-repo-host-key      
+  - name: OrderManager-auth
+    parameters:
+      service-key:
+        name: OrderManager-auth-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          Name: OrderManager_auth
+          ServiceInstanceName: OrderManager-auth
+          ServiceKeyName: OrderManager-auth-key
+          sap.cloud.service: OrderManager
+        - Name: OrderManager_html5_repo_host
+          ServiceInstanceName: OrderManager-html5-repo-host
+          ServiceKeyName: OrderManager-html5-repo-host-key
+          sap.cloud.service: OrderManager 
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+
 resources:
 - name: OrderManager-auth
   type: org.cloudfoundry.managed-service
@@ -87,6 +99,8 @@ resources:
 - name: OrderManager-db
   type: com.sap.xs.hdi-container
   parameters:
+    config:
+      database_id: 99a8c0de-90a2-4acb-9bc6-9523e2c0eeca
     service: hana
     service-plan: hdi-shared
 
@@ -94,11 +108,11 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      HTML5Runtime_enabled: false
+      HTML5Runtime_enabled: true
       init_data:
         instance:
           destinations:
-          - Authentication: OAuth2UserTokenExchange
+          - Authentication: NoAuthentication
             HTML5.DynamicDestination: true
             HTML5.ForwardAuthToken: true
             Name: OrderManager-srv-api
@@ -121,12 +135,6 @@ resources:
   parameters:
     service: html5-apps-repo
     service-plan: app-host
-
-- name: OrderManager-html5-runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
     
 parameters:
   deploy_mode: html5-repo
