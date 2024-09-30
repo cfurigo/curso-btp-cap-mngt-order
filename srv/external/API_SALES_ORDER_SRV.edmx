@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="API_SALES_ORDER_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="A_SalesOrderType" sap:label="Cabeçalho da ordem do cliente" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente"/>
+                <Property Name="SalesOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo pedido cliente" sap:quickinfo="Tipo da ordem do cliente"/>
+                <Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Organização vendas" sap:quickinfo="Organização de vendas"/>
+                <Property Name="DistributionChannel" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Canal distribuição" sap:quickinfo="Canal de distribuição"/>
+                <Property Name="OrganizationDivision" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Setor de atividade"/>
+                <Property Name="SalesGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Equipe de vendas"/>
+                <Property Name="SalesOffice" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Escritório de vendas"/>
+                <Property Name="SalesDistrict" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Região de vendas"/>
+                <Property Name="SoldToParty" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Emissor da ordem"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Dt.criação" sap:quickinfo="Data de criação do registro" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Criado por" sap:quickinfo="Nome do responsável que criou o objeto" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Modificado em" sap:quickinfo="Data da última modificação" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SenderBusinessSystemName" Type="Edm.String" MaxLength="60" sap:label="ID sist.empres.ext." sap:quickinfo="ID do sistema empresarial externo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ExternalDocumentID" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="ID doc.externo" sap:quickinfo="ID do documento externo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" ConcurrencyMode="Fixed" sap:label="Registro da hora" sap:quickinfo="Registro hora UTC forma descritiva (JJJJMMTThhmmssmmmuuun)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PurchaseOrderByCustomer" Type="Edm.String" MaxLength="35" sap:label="Referência cliente" sap:quickinfo="Referência do cliente"/>
+                <Property Name="PurchaseOrderByShipToParty" Type="Edm.String" MaxLength="35" sap:label="Nº do pedido" sap:quickinfo="Nº pedido do recebedor da mercadoria"/>
+                <Property Name="CustomerPurchaseOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo pedido" sap:quickinfo="Tipo de nº do pedido do cliente"/>
+                <Property Name="CustomerPurchaseOrderDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Dt.referência clnt." sap:quickinfo="Data de referência do cliente"/>
+                <Property Name="SalesOrderDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data do documento" sap:quickinfo="Data do documento (data de entrada/saída)"/>
+                <Property Name="TotalNetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor líquido" sap:quickinfo="Valor líquido da ordem na moeda do documento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda do documento" sap:quickinfo="Moeda do documento SD" sap:semantics="currency-code"/>
+                <Property Name="SDDocumentReason" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Motivo da ordem" sap:quickinfo="Motivo da ordem (motivo da transação comercial)"/>
+                <Property Name="PricingDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data fixação preço" sap:quickinfo="Data para determinação de preço e câmbio de moeda"/>
+                <Property Name="RequestedDeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data solicitada de remessa"/>
+                <Property Name="ShippingCondition" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Condição expedição" sap:quickinfo="Condição de expedição"/>
+                <Property Name="CompleteDeliveryIsDefined" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Fornecim.completo" sap:quickinfo="Fornecimento completo por cada ordem do cliente?"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tipo de expedição"/>
+                <Property Name="HeaderBillingBlockReason" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Bloq.doc.faturamento" sap:quickinfo="Bloqueio de documento de faturamento em documento SD"/>
+                <Property Name="DeliveryBlockReason" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Bloqueio remessa" sap:quickinfo="Bloqueio da remessa (cabeçalho do documento)"/>
+                <Property Name="DeliveryDateTypeRule" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Rgr.dt.remessa" sap:quickinfo="Regra de data da remessa"/>
+                <Property Name="IncotermsClassification" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Incoterms" sap:quickinfo="Incoterms parte 1"/>
+                <Property Name="IncotermsTransferLocation" Type="Edm.String" MaxLength="28" sap:label="Incoterms parte 2"/>
+                <Property Name="IncotermsLocation1" Type="Edm.String" MaxLength="70" sap:label="Local incoterms 1"/>
+                <Property Name="IncotermsLocation2" Type="Edm.String" MaxLength="70" sap:label="Local incoterms 2"/>
+                <Property Name="IncotermsVersion" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Versão Incoterms"/>
+                <Property Name="CustomerPriceGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grupo preços cliente" sap:quickinfo="Grupo de preço do cliente"/>
+                <Property Name="PriceListType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tp.lista prçs." sap:quickinfo="Tipo de lista de preços"/>
+                <Property Name="CustomerPaymentTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Condições pgto." sap:quickinfo="Chave de condições de pagamento"/>
+                <Property Name="PaymentMethod" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="FrmPgto" sap:quickinfo="Forma de pagamento"/>
+                <Property Name="AssignmentReference" Type="Edm.String" MaxLength="18" sap:label="Atribuição" sap:quickinfo="Nº atribuição"/>
+                <Property Name="ReferenceSDDocument" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento referência" sap:quickinfo="Nº documento do documento de referência"/>
+                <Property Name="ReferenceSDDocumentCategory" Type="Edm.String" MaxLength="4" sap:label="Ctg.doc.precedente" sap:quickinfo="Categoria de documento SD precedente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AccountingDocExternalReference" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Referência" sap:quickinfo="Nº documento de referência"/>
+                <Property Name="CustomerAccountAssignmentGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grpo.ClassCont.cli." sap:quickinfo="Grupo de classificações contábeis para este cliente"/>
+                <Property Name="AccountingExchangeRate" Type="Edm.Decimal" Precision="9" Scale="5" sap:label="Contab.taxa câmbio" sap:quickinfo="Taxa de câmbio para lançamentos FI"/>
+                <Property Name="CustomerGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grupo de clientes"/>
+                <Property Name="AdditionalCustomerGroup1" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 1"/>
+                <Property Name="AdditionalCustomerGroup2" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 2"/>
+                <Property Name="AdditionalCustomerGroup3" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 3"/>
+                <Property Name="AdditionalCustomerGroup4" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 4"/>
+                <Property Name="AdditionalCustomerGroup5" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 5"/>
+                <Property Name="SlsDocIsRlvtForProofOfDeliv" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Relevante p/CRR" sap:quickinfo="Relevante p/processamto.CRR"/>
+                <Property Name="CustomerTaxClassification1" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Clas.fiscal diverg." sap:quickinfo="Classificação fiscal divergente"/>
+                <Property Name="CustomerTaxClassification2" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc2-Clnt" sap:quickinfo="Classificação fiscal 2 para cliente"/>
+                <Property Name="CustomerTaxClassification3" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc3-Clnt" sap:quickinfo="Classificação fiscal 3 para cliente"/>
+                <Property Name="CustomerTaxClassification4" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc4-Clnt" sap:quickinfo="Classificação fiscal 4 para cliente"/>
+                <Property Name="CustomerTaxClassification5" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc5-Clnt" sap:quickinfo="Classificação fiscal 5 para cliente"/>
+                <Property Name="CustomerTaxClassification6" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc6-Clnt" sap:quickinfo="Classificação fiscal 6 para cliente"/>
+                <Property Name="CustomerTaxClassification7" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc7-Clnt" sap:quickinfo="Classificação fiscal 7 para cliente"/>
+                <Property Name="CustomerTaxClassification8" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc8-Clnt" sap:quickinfo="Classificação fiscal 8 para cliente"/>
+                <Property Name="CustomerTaxClassification9" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ClassFisc9-Clnt" sap:quickinfo="Classificação fiscal 9 para cliente"/>
+                <Property Name="TaxDepartureCountry" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Impostos:PaísExp." sap:quickinfo="País de procedência fiscal"/>
+                <Property Name="VATRegistrationCountry" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País destino imposto" sap:quickinfo="País de destino do imposto"/>
+                <Property Name="SalesOrderApprovalReason" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="ID motv.solic.aprov." sap:quickinfo="ID do motivo de solicitação de aprovação" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesDocApprovalStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status de aprovação" sap:quickinfo="Status de aprovação de documento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OverallSDProcessStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status global" sap:quickinfo="Status global de processamento (cabeçalho/todos os itens)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TotalCreditCheckStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status de crédito" sap:quickinfo="Status global das verificações de crédito" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OverallTotalDeliveryStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status glob.remessa" sap:quickinfo="Status global da remessa (todos os itens)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OverallSDDocumentRejectionSts" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status recusa" sap:quickinfo="Status da recusa (todos os itens)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FashionCancelDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de cancelamento"/>
+                <Property Name="RetailAdditionalCustomerGrp6" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 6"/>
+                <Property Name="RetailAdditionalCustomerGrp7" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 7"/>
+                <Property Name="RetailAdditionalCustomerGrp8" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 8"/>
+                <Property Name="RetailAdditionalCustomerGrp9" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 9"/>
+                <Property Name="RetailAdditionalCustomerGrp10" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Grupo de clientes 10"/>
+                <NavigationProperty Name="to_Item" Relationship="API_SALES_ORDER_SRV.assoc_42CCE6159E335C5B7697EE6BC8D37107" FromRole="FromRole_assoc_42CCE6159E335C5B7697EE6BC8D37107" ToRole="ToRole_assoc_42CCE6159E335C5B7697EE6BC8D37107"/>
+                <NavigationProperty Name="to_Partner" Relationship="API_SALES_ORDER_SRV.assoc_E0F0B75CE5743C11AC56990C6083E0BA" FromRole="FromRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA" ToRole="ToRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA"/>
+                <NavigationProperty Name="to_PaymentPlanItemDetails" Relationship="API_SALES_ORDER_SRV.assoc_44F7AAFBAB4403914DD21D2B054AE91D" FromRole="FromRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D" ToRole="ToRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D"/>
+                <NavigationProperty Name="to_PricingElement" Relationship="API_SALES_ORDER_SRV.assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21" FromRole="FromRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21" ToRole="ToRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21"/>
+                <NavigationProperty Name="to_Text" Relationship="API_SALES_ORDER_SRV.assoc_D06EF7DEC5E9B78C200493F21B05A94E" FromRole="FromRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E" ToRole="ToRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderHeaderPartnerType" sap:label="Cabeçalho parceiro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="PartnerFunction"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PartnerFunction" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Função parceiro" sap:quickinfo="Função do parceiro"/>
+                <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Fornecedor" sap:quickinfo="Nº conta do fornecedor"/>
+                <Property Name="Personnel" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Nº pessoal"/>
+                <Property Name="ContactPerson" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Pessoa de contato" sap:quickinfo="Nº pessoa de contato"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_8F721694C94560109555442071763439" FromRole="FromRole_assoc_8F721694C94560109555442071763439" ToRole="ToRole_assoc_8F721694C94560109555442071763439"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderHeaderPrElementType" sap:label="Elemento de preço de cabeçalho" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="PricingProcedureStep"/>
+                    <PropertyRef Name="PricingProcedureCounter"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingProcedureStep" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Nº nível"/>
+                <Property Name="PricingProcedureCounter" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label=" Contador" sap:quickinfo="Contador condições"/>
+                <Property Name="ConditionType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo de condição"/>
+                <Property Name="PricingDateTime" Type="Edm.String" MaxLength="14" sap:display-format="UpperCase" sap:label="Válido de" sap:quickinfo="Registro da hora para determinação do preço" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionCalculationType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Tipo de cálculo" sap:quickinfo="Regra de cálculo de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionBaseValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Base da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionRateValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Montante" sap:quickinfo="Montante ou porcentagem da condição"/>
+                <Property Name="ConditionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda" sap:quickinfo="Código da moeda" sap:semantics="currency-code"/>
+                <Property Name="ConditionQuantity" Type="Edm.Decimal" Precision="5" Scale="0" sap:unit="ConditionQuantityUnit" sap:label="Unidade de preço" sap:quickinfo="Unidade de preço da condição"/>
+                <Property Name="ConditionQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="UM da condição" sap:quickinfo="Unidade de medida da condição no documento" sap:semantics="unit-of-measure"/>
+                <Property Name="ConditionQuantitySAPUnit" Type="Edm.String" MaxLength="3" sap:label="SAP qtd.condição" sap:quickinfo="Código de unidade SAP quantidade de condição"/>
+                <Property Name="ConditionQuantityISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="ISO qtd.condição" sap:quickinfo="Código de unidade ISO quantidade de condição"/>
+                <Property Name="ConditionCategory" Type="Edm.String" MaxLength="1" sap:label="Ctg.condição" sap:quickinfo="Ctg.condição: (frete,imposto,preço-base=receita,preço,etc.)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsForStatistics" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Estatístico" sap:quickinfo="Condição tem função estatística" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingScaleType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo de escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionOrigin" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição: origem" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsGroupCondition" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição de grupo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionRecord" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº registro condição" sap:quickinfo="Nº de registro de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionSequentialNumber" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Nº seq.condição" sap:quickinfo="Número sequencial da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Código de imposto" sap:quickinfo="Código do IVA" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="WithholdingTaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Código IRF" sap:quickinfo="Código de imposto retido na fonte" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CndnRoundingOffDiffAmount" Type="Edm.Decimal" Precision="6" Scale="3" sap:unit="TransactionCurrency" sap:label="Dif.arred.condição" sap:quickinfo="Condição: diferença de arredondamento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor" sap:quickinfo="Valor da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda do documento" sap:quickinfo="Moeda do documento SD" sap:semantics="currency-code"/>
+                <Property Name="ConditionControl" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Controle de condição" sap:quickinfo="Controle das condições" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionInactiveReason" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição inativa" sap:quickinfo="Condição está inativa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionClass" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classe de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PrcgProcedureCounterForHeader" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Contador" sap:quickinfo="Contador de condição (cabeçalho)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FactorForConditionBasisValue" Type="Edm.Double" sap:label="Fator de condição" sap:quickinfo="Fator para base para condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StructureCondition" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cond.estrutura" sap:quickinfo="Condição da estrutura" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PeriodFactorForCndnBasisValue" Type="Edm.Double" sap:label="Fator de condição" sap:quickinfo="Fator para base para condição (período)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingScaleBasis" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Base de cálculo" sap:quickinfo="Código base de escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionScaleBasisValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Base da escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionScaleBasisUnit" Type="Edm.String" MaxLength="3" sap:label="UM escala" sap:quickinfo="UM escala de condições" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ConditionScaleBasisCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda da escala" sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/>
+                <Property Name="CndnIsRelevantForIntcoBilling" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Faturamento interno" sap:quickinfo="Condição para faturamento interno" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsManuallyChanged" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Modificado manualm." sap:quickinfo="Condição modificada manualmente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsForConfiguration" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Utiliz.p/config.var." sap:quickinfo="Condição utilizada para configuração de variante" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="VariantCondition" Type="Edm.String" MaxLength="26" sap:label="Chave de variantes" sap:quickinfo="Chave de condição de variante" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_C516ABBC5925268953A9AC7D6F836887" FromRole="FromRole_assoc_C516ABBC5925268953A9AC7D6F836887" ToRole="ToRole_assoc_C516ABBC5925268953A9AC7D6F836887"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderItemType" sap:label="Item da ordem do cliente" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:text="SalesOrderItemText" sap:label="Item" sap:quickinfo="Item da ordem do cliente"/>
+                <Property Name="HigherLevelItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Item superior" sap:quickinfo="Item superior em estruturas de lista técnica"/>
+                <Property Name="SalesOrderItemCategory" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Categoria do item" sap:quickinfo="Categoria do item do documento de vendas e distribuição"/>
+                <Property Name="SalesOrderItemText" Type="Edm.String" MaxLength="40" sap:label="Denominação de item" sap:quickinfo="Texto breve do item da ordem do cliente"/>
+                <Property Name="PurchaseOrderByCustomer" Type="Edm.String" MaxLength="35" sap:label="Referência cliente" sap:quickinfo="Referência do cliente"/>
+                <Property Name="PurchaseOrderByShipToParty" Type="Edm.String" MaxLength="35" sap:label="Nº do pedido" sap:quickinfo="Nº pedido do recebedor da mercadoria"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Nº do material"/>
+                <Property Name="MaterialByCustomer" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Material do cliente" sap:quickinfo="Nº material usado pelo cliente"/>
+                <Property Name="PricingDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data fixação preço" sap:quickinfo="Data para determinação de preço e câmbio de moeda"/>
+                <Property Name="PricingReferenceMaterial" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Mat.ref.p/prç."/>
+                <Property Name="RequestedQuantity" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="RequestedQuantityUnit" sap:label="Qtd.solicitada" sap:quickinfo="Quantidade solicitada"/>
+                <Property Name="RequestedQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.qtd.solicitada" sap:quickinfo="Unidade da quantidade solicitada" sap:semantics="unit-of-measure"/>
+                <Property Name="RequestedQuantitySAPUnit" Type="Edm.String" MaxLength="3" sap:label="Qtd.solic.código SAP" sap:quickinfo="Quantidade solicitada para unidade interna da SAP"/>
+                <Property Name="RequestedQuantityISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Qtd.solic.código ISO" sap:quickinfo="Quantidade solicitada para código de unidade ISO"/>
+                <Property Name="ItemGrossWeight" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="ItemWeightUnit" sap:label="Peso bruto" sap:quickinfo="Peso bruto do item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ItemNetWeight" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="ItemWeightUnit" sap:label="Peso líquido" sap:quickinfo="Peso líquido do item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ItemWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de peso" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ItemWeightSAPUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.SAP peso item" sap:quickinfo="Unidade de peso de item para código de unidade SAP interno"/>
+                <Property Name="ItemWeightISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Unid.ISO peso item" sap:quickinfo="Unidade de peso de item para código de unidade ISO"/>
+                <Property Name="ItemVolume" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="ItemVolumeUnit" sap:label="Volume" sap:quickinfo="Volume do item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ItemVolumeUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de volume" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ItemVolumeSAPUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.SAP volume item" sap:quickinfo="Código de unidade SAP de volume do item"/>
+                <Property Name="ItemVolumeISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Unid.ISO vol.item" sap:quickinfo="Código de unidade ISO de volume do item"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda do documento" sap:quickinfo="Moeda do documento SD" sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor líquido" sap:quickinfo="Valor líquido item ordem na moeda documento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Grupo de mercadorias"/>
+                <Property Name="MaterialPricingGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grupo prç.material" sap:quickinfo="Grupo de preços do material"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lote" sap:quickinfo="Número do lote"/>
+                <Property Name="ProductionPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro" sap:quickinfo="Centro (próprio ou externo)"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Depósito"/>
+                <Property Name="DeliveryGroup" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Grupo de remessa" sap:quickinfo="Grupo de remessa (os itens são fornecidos em conjunto)"/>
+                <Property Name="ShippingPoint" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Local expedição" sap:quickinfo="Local de expedição/ponto de recebimento"/>
+                <Property Name="ShippingType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tipo de expedição"/>
+                <Property Name="DeliveryPriority" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Prioridade remessa" sap:quickinfo="Prioridade de remessa"/>
+                <Property Name="DeliveryDateTypeRule" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Rgr.dt.remessa" sap:quickinfo="Regra de data da remessa"/>
+                <Property Name="IncotermsClassification" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Incoterms" sap:quickinfo="Incoterms parte 1"/>
+                <Property Name="IncotermsTransferLocation" Type="Edm.String" MaxLength="28" sap:label="Incoterms parte 2"/>
+                <Property Name="IncotermsLocation1" Type="Edm.String" MaxLength="70" sap:label="Local incoterms 1"/>
+                <Property Name="IncotermsLocation2" Type="Edm.String" MaxLength="70" sap:label="Local incoterms 2"/>
+                <Property Name="ProductTaxClassification1" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification2" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification3" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification4" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification5" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification6" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification7" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification8" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="ProductTaxClassification9" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classificação fiscal" sap:quickinfo="Classificação fiscal do material"/>
+                <Property Name="MatlAccountAssignmentGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grp.class.cont.mat." sap:quickinfo="Grupo de classificação contábil para material"/>
+                <Property Name="CustomerPaymentTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Condições pgto." sap:quickinfo="Chave de condições de pagamento"/>
+                <Property Name="CustomerGroup" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Grupo de clientes"/>
+                <Property Name="SalesDocumentRjcnReason" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Motivo de recusa" sap:quickinfo="Motivo para rejeição de documentos de vendas"/>
+                <Property Name="ItemBillingBlockReason" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Bloq.doc.faturamento" sap:quickinfo="Bloqueio do documento de faturamento para item"/>
+                <Property Name="SlsDocIsRlvtForProofOfDeliv" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Relevante p/CRR" sap:quickinfo="Relevante p/processamto.CRR"/>
+                <Property Name="WBSElement" Type="Edm.String" MaxLength="24" sap:display-format="NonNegative" sap:label="Elemento PEP" sap:quickinfo="Elemento do plano da estrutura do projeto (elemento PEP)"/>
+                <Property Name="ProfitCenter" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Centro de lucro"/>
+                <Property Name="AccountingExchangeRate" Type="Edm.Decimal" Precision="9" Scale="5" sap:label="Contab.taxa câmbio" sap:quickinfo="Taxa de câmbio para lançamentos FI"/>
+                <Property Name="ReferenceSDDocument" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento referência" sap:quickinfo="Nº documento do documento de referência"/>
+                <Property Name="ReferenceSDDocumentItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Item com.modelo" sap:quickinfo="Nº item do item comercial modelo"/>
+                <Property Name="SDProcessStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status global" sap:quickinfo="Status global de processamento (item)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DeliveryStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status de remessa" sap:quickinfo="Status de remessa (item)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="OrderRelatedBillingStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="St.fatmto.rel.ordem" sap:quickinfo="Status do faturamento relacionado à ordem (item)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProductSeasonYear" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Ano de época"/>
+                <Property Name="ProductSeason" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Época"/>
+                <Property Name="ProductCollection" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Coleção" sap:quickinfo="Coleção de moda"/>
+                <Property Name="ProductTheme" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Tema" sap:quickinfo="Tema de moda"/>
+                <Property Name="SeasonCompletenessStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cód.complet.época" sap:quickinfo="Código de completitude de época" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FashionCancelDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de cancelamento"/>
+                <Property Name="ProductCharacteristic1" Type="Edm.String" MaxLength="18" sap:label="Caract.1" sap:quickinfo="Denominação da característica 1" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProductCharacteristic2" Type="Edm.String" MaxLength="18" sap:label="Caract.2" sap:quickinfo="Denominação da característica 2" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProductCharacteristic3" Type="Edm.String" MaxLength="18" sap:label="Característica 3" sap:quickinfo="Denominação da característica 3" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShippingGroupNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Grupo PSST" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShippingGroupRule" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Regra agrpmto.PSST" sap:quickinfo="Regra de agrupamento PSST" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CrossPlantConfigurableProduct" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Mat.configuráv.geral" sap:quickinfo="Material configurável geral" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ProductCategory" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Ctg.material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="RequirementSegment" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Segmento necessidade" sap:quickinfo="Segmento de necessidade"/>
+                <NavigationProperty Name="to_Partner" Relationship="API_SALES_ORDER_SRV.assoc_5EBE73B545500EE6B48597931F7D5C56" FromRole="FromRole_assoc_5EBE73B545500EE6B48597931F7D5C56" ToRole="ToRole_assoc_5EBE73B545500EE6B48597931F7D5C56"/>
+                <NavigationProperty Name="to_PricingElement" Relationship="API_SALES_ORDER_SRV.assoc_A18E7EFDF1ADD05474B187D10B62BDBF" FromRole="FromRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF" ToRole="ToRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD" FromRole="FromRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD" ToRole="ToRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD"/>
+                <NavigationProperty Name="to_ScheduleLine" Relationship="API_SALES_ORDER_SRV.assoc_31BB747044FCC7AA5DA94B21FD458954" FromRole="FromRole_assoc_31BB747044FCC7AA5DA94B21FD458954" ToRole="ToRole_assoc_31BB747044FCC7AA5DA94B21FD458954"/>
+                <NavigationProperty Name="to_Text" Relationship="API_SALES_ORDER_SRV.assoc_3604F4165550FA74B882A4F3345D936F" FromRole="FromRole_assoc_3604F4165550FA74B882A4F3345D936F" ToRole="ToRole_assoc_3604F4165550FA74B882A4F3345D936F"/>
+                <NavigationProperty Name="to_ValueAddedService" Relationship="API_SALES_ORDER_SRV.assoc_37E221CD63CCF5D7D08C53526ADAFCCC" FromRole="FromRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC" ToRole="ToRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderItemPartnerType" sap:label="Parceiro do item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                    <PropertyRef Name="PartnerFunction"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item da ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PartnerFunction" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Função parceiro" sap:quickinfo="Função do parceiro"/>
+                <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Fornecedor" sap:quickinfo="Nº conta do fornecedor"/>
+                <Property Name="Personnel" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Nº pessoal"/>
+                <Property Name="ContactPerson" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Pessoa de contato" sap:quickinfo="Nº pessoa de contato"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00" FromRole="FromRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00" ToRole="ToRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00"/>
+                <NavigationProperty Name="to_SalesOrderItem" Relationship="API_SALES_ORDER_SRV.assoc_2E7827BA025D2DC7290DEA3E71FF39FB" FromRole="FromRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB" ToRole="ToRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderItemPrElementType" sap:label="Elemento de preço de item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                    <PropertyRef Name="PricingProcedureStep"/>
+                    <PropertyRef Name="PricingProcedureCounter"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item da ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingProcedureStep" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Nº nível"/>
+                <Property Name="PricingProcedureCounter" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label=" Contador" sap:quickinfo="Contador condições"/>
+                <Property Name="ConditionType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo de condição"/>
+                <Property Name="PricingDateTime" Type="Edm.String" MaxLength="14" sap:display-format="UpperCase" sap:label="Válido de" sap:quickinfo="Registro da hora para determinação do preço" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionCalculationType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Tipo de cálculo" sap:quickinfo="Regra de cálculo de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionBaseValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Base da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionRateValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Montante" sap:quickinfo="Montante ou porcentagem da condição"/>
+                <Property Name="ConditionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda" sap:quickinfo="Código da moeda" sap:semantics="currency-code"/>
+                <Property Name="ConditionQuantity" Type="Edm.Decimal" Precision="5" Scale="0" sap:unit="ConditionQuantityUnit" sap:label="Unidade de preço" sap:quickinfo="Unidade de preço da condição"/>
+                <Property Name="ConditionQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="UM da condição" sap:quickinfo="Unidade de medida da condição no documento" sap:semantics="unit-of-measure"/>
+                <Property Name="ConditionQuantitySAPUnit" Type="Edm.String" MaxLength="3" sap:label="SAP qtd.condição" sap:quickinfo="Código de unidade SAP quantidade de condição"/>
+                <Property Name="ConditionQuantityISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="ISO qtd.condição" sap:quickinfo="Código de unidade ISO quantidade de condição"/>
+                <Property Name="ConditionCategory" Type="Edm.String" MaxLength="1" sap:label="Ctg.condição" sap:quickinfo="Ctg.condição: (frete,imposto,preço-base=receita,preço,etc.)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsForStatistics" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Estatístico" sap:quickinfo="Condição tem função estatística" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingScaleType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tipo de escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsRelevantForAccrual" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Provisão" sap:quickinfo="Condição é relevante para provisões (p.ex. frete)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CndnIsRelevantForInvoiceList" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cond.lista faturas" sap:quickinfo="Condição para lista de faturas" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionOrigin" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição: origem" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsGroupCondition" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição de grupo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionRecord" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº registro condição" sap:quickinfo="Nº de registro de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionSequentialNumber" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Nº seq.condição" sap:quickinfo="Número sequencial da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Código de imposto" sap:quickinfo="Código do IVA" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="WithholdingTaxCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Código IRF" sap:quickinfo="Código de imposto retido na fonte" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CndnRoundingOffDiffAmount" Type="Edm.Decimal" Precision="6" Scale="3" sap:unit="TransactionCurrency" sap:label="Dif.arred.condição" sap:quickinfo="Condição: diferença de arredondamento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency" sap:label="Valor" sap:quickinfo="Valor da condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda do documento" sap:quickinfo="Moeda do documento SD" sap:semantics="currency-code"/>
+                <Property Name="ConditionControl" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Controle de condição" sap:quickinfo="Controle das condições" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionInactiveReason" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Condição inativa" sap:quickinfo="Condição está inativa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionClass" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Classe de condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PrcgProcedureCounterForHeader" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Contador" sap:quickinfo="Contador de condição (cabeçalho)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FactorForConditionBasisValue" Type="Edm.Double" sap:label="Fator de condição" sap:quickinfo="Fator para base para condição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StructureCondition" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cond.estrutura" sap:quickinfo="Condição da estrutura" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PeriodFactorForCndnBasisValue" Type="Edm.Double" sap:label="Fator de condição" sap:quickinfo="Fator para base para condição (período)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PricingScaleBasis" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Base de cálculo" sap:quickinfo="Código base de escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionScaleBasisValue" Type="Edm.Decimal" Precision="24" Scale="9" sap:label="Base da escala" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionScaleBasisUnit" Type="Edm.String" MaxLength="3" sap:label="UM escala" sap:quickinfo="UM escala de condições" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ConditionScaleBasisCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda da escala" sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/>
+                <Property Name="CndnIsRelevantForIntcoBilling" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Faturamento interno" sap:quickinfo="Condição para faturamento interno" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsManuallyChanged" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Modificado manualm." sap:quickinfo="Condição modificada manualmente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ConditionIsForConfiguration" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Utiliz.p/config.var." sap:quickinfo="Condição utilizada para configuração de variante" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="VariantCondition" Type="Edm.String" MaxLength="26" sap:label="Chave de variantes" sap:quickinfo="Chave de condição de variante" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_3BF40B19B8B1DF0736F165DBAFECEE42" FromRole="FromRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42" ToRole="ToRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42"/>
+                <NavigationProperty Name="to_SalesOrderItem" Relationship="API_SALES_ORDER_SRV.assoc_0FC12A865A38C45D885A046A7BD1FA20" FromRole="FromRole_assoc_0FC12A865A38C45D885A046A7BD1FA20" ToRole="ToRole_assoc_0FC12A865A38C45D885A046A7BD1FA20"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderItemTextType" sap:label="Texto do item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                    <PropertyRef Name="Language"/>
+                    <PropertyRef Name="LongTextID"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item da ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Código de idioma"/>
+                <Property Name="LongTextID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="ID de texto"/>
+                <Property Name="LongText" Type="Edm.String" sap:label="Cadeia de caracteres" sap:heading="" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_802E52C3F27DB910494E51738146B8F5" FromRole="FromRole_assoc_802E52C3F27DB910494E51738146B8F5" ToRole="ToRole_assoc_802E52C3F27DB910494E51738146B8F5"/>
+                <NavigationProperty Name="to_SalesOrderItem" Relationship="API_SALES_ORDER_SRV.assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0" FromRole="FromRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0" ToRole="ToRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderScheduleLineType" sap:label="Divisão de remessa por item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                    <PropertyRef Name="ScheduleLine"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento de vendas" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item doc.vendas" sap:quickinfo="Item do documento de vendas" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ScheduleLine" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nº div.remessa" sap:quickinfo="Nº da divisão de remessa"/>
+                <Property Name="RequestedDeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de remessa" sap:quickinfo="Data solicitada de remessa"/>
+                <Property Name="ConfirmedDeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de remessa" sap:quickinfo="Data confirmada da remessa"/>
+                <Property Name="OrderQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de venda" sap:semantics="unit-of-measure"/>
+                <Property Name="OrderQuantitySAPUnit" Type="Edm.String" MaxLength="3" sap:label="Qtd.ordem SAP" sap:quickinfo="Código de unidade SAP quantidade da ordem"/>
+                <Property Name="OrderQuantityISOUnit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="ISO quantidade ordem" sap:quickinfo="Código de unidade ISO de quantidade da ordem"/>
+                <Property Name="ScheduleLineOrderQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Qtd.ordem" sap:quickinfo="Quantidade da ordem em unidades de venda"/>
+                <Property Name="ConfdOrderQtyByMatlAvailCheck" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Qtd.confirmada" sap:quickinfo="Quantidade confirmada"/>
+                <Property Name="DeliveredQtyInOrderQtyUnit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Quantidade fornecida"/>
+                <Property Name="OpenConfdDelivQtyInOrdQtyUnit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Qtd.pendente" sap:quickinfo="Quantidade de remessa pendente confirmada"/>
+                <Property Name="CorrectedQtyInOrderQtyUnit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="OrderQuantityUnit" sap:label="Quantidade corrigida" sap:quickinfo="Quantidade corrigida em UMV"/>
+                <Property Name="DelivBlockReasonForSchedLine" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Bloqueio da remessa" sap:quickinfo="Divisão da remessa bloqueada para entrega"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderTextType" sap:label="Texto de cabeçalho" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="Language"/>
+                    <PropertyRef Name="LongTextID"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Código de idioma"/>
+                <Property Name="LongTextID" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="ID de texto"/>
+                <Property Name="LongText" Type="Edm.String" sap:label="Cadeia de caracteres" sap:heading="" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_9211CD1FA0A3B03DDB30735294259743" FromRole="FromRole_assoc_9211CD1FA0A3B03DDB30735294259743" ToRole="ToRole_assoc_9211CD1FA0A3B03DDB30735294259743"/>
+            </EntityType>
+            <EntityType Name="A_SalesOrderValAddedSrvcType" sap:label="Serviço adicionado ao valor do item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ValueAddedServiceType"/>
+                    <PropertyRef Name="ValueAddedSubServiceType"/>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="SalesOrderItem"/>
+                </Key>
+                <Property Name="ValueAddedServiceType" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Tipos de serviço SA"/>
+                <Property Name="ValueAddedSubServiceType" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="UpperCase" sap:label="Serviços parciais SA"/>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento referência" sap:quickinfo="Nº documento do documento de referência"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item com.modelo" sap:quickinfo="Nº item do item comercial modelo"/>
+                <Property Name="ValAddedSrvcTransactionNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Número da transação" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ValAddedSrvcItemGroup" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Grupo de itens" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ValAddedSrvcItemNumber" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Nº item" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ValueAddedServiceProduct" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Nº material" sap:quickinfo="Número de material SA"/>
+                <Property Name="ValAddedSrvcHasToBeOrdered" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Relev.neces." sap:quickinfo="Código de relevância de necessidade para material SA"/>
+                <Property Name="ValAddedSrvcIncrement" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Incremento" sap:quickinfo="Incremento SA"/>
+                <Property Name="ValueAddedServiceChargeCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Código preço SA" sap:quickinfo="Códigos de preço SA"/>
+                <Property Name="ValAddedSrvcIsCreatedManually" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cód.entrada man." sap:quickinfo="Código de entrada manual" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ValAddedSrvcItemNumberInSD" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Número de item SA" sap:quickinfo="Número de item SA em SD" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ValAddedSrvcIsRlvtForProcmt" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Relev.suprim." sap:quickinfo="Suprimento relevante para material SA"/>
+                <Property Name="ValueAddedServiceText1" Type="Edm.String" MaxLength="20" sap:label="Campo1" sap:quickinfo="Campo SA 1 para utilização livre pelo cliente"/>
+                <Property Name="ValueAddedServiceText2" Type="Edm.String" MaxLength="20" sap:label="Campo2" sap:quickinfo="Campo SA 2 para utilização livre pelo cliente"/>
+                <Property Name="ValueAddedServiceText3" Type="Edm.String" MaxLength="20" sap:label="Campo3" sap:quickinfo="Campo SA 3 para utilização livre pelo cliente"/>
+                <Property Name="ValueAddedServiceLongText" Type="Edm.String" MaxLength="132" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="A_SlsOrdPaymentPlanItemDetailsType" sap:label="Plano de pagamento de cabeçalho" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                    <PropertyRef Name="PaymentPlanItem"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Ordem do cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PaymentPlanItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item do prog.faturamento/plano faturamento/cartões pagamento"/>
+                <Property Name="PaymentPlan" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº prg.faturam." sap:quickinfo="Nº do programa/plano de faturamento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ElectronicPaymentType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tp.pgto.eletr." sap:quickinfo="Pagamento eletrônico: tipo de pagamento"/>
+                <Property Name="ElectronicPayment" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Nº da conta" sap:quickinfo="Pagamento eletrônico: nº da conta"/>
+                <Property Name="EPaytValidityStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Pgto.eletr.válido de" sap:quickinfo="Pagamento eletrônico: válido de"/>
+                <Property Name="EPaytValidityEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Pgto.eletr.vál.até" sap:quickinfo="Pagamento eletrônico: válido até"/>
+                <Property Name="ElectronicPaymentHolderName" Type="Edm.String" MaxLength="40" sap:label="Titular da conta" sap:quickinfo="Pagamento eletrônico: nome do titular da conta"/>
+                <Property Name="AuthorizedAmountInAuthznCrcy" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="AuthorizationCurrency" sap:label="Montante autorizado" sap:quickinfo="Pagamento eletrônico: montante autorizado"/>
+                <Property Name="AuthorizationCurrency" Type="Edm.String" MaxLength="5" sap:label="Moeda" sap:quickinfo="Código da moeda" sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/>
+                <Property Name="AuthorizationByDigitalPaytSrvc" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nº autorização" sap:quickinfo="Pagamento eletrônico: nº de autorização"/>
+                <Property Name="AuthorizationByAcquirer" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Cód.ref.autor." sap:quickinfo="Pagamento eletrônico: código de referência de autorização" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AuthorizationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Dt.autor.pgto.eletr." sap:quickinfo="Pagamento eletrônico: data de autorização" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AuthorizationTime" Type="Edm.Time" Precision="0" sap:label="H.autor.pgto.eletr." sap:quickinfo="Pagamento eletrônico: hora de autorização" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AuthorizationStatusName" Type="Edm.String" MaxLength="40" sap:label="Texto" sap:quickinfo="Cartões de pagamento: texto de resultado" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EPaytByDigitalPaymentSrvc" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Token PgtoElet." sap:quickinfo="Token para integração de pagamento digital em SD"/>
+                <Property Name="ElectronicPaymentCallStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status chamada" sap:quickinfo="Pagamento eletrônico: status de chamada" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EPaytAuthorizationResult" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Resp.a verifs.autor." sap:quickinfo="Pagamento eletrônico: resposta a verificações de autorização" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EPaytToBeAuthorizedAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="AuthorizationCurrency" sap:label="Mont.a ser aut." sap:quickinfo="Pagamento eletrônico: montante a ser autorizado" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EPaytAuthorizationIsExpired" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Autorização expirada" sap:quickinfo="Pagamento eletrônico: autorização expirada" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EPaytAmountIsChanged" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Mont.modificado" sap:quickinfo="Pagamento eletrônico: montante modificado" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PreauthorizationIsRequested" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Autorização prelim." sap:quickinfo="Pagamento eletrônico: autorização preliminar" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PaymentServiceProvider" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Forn.servs.pagamento" sap:quickinfo="Fornecedor de serviços de pagamento para pagamentos digitais"/>
+                <Property Name="PaymentByPaymentServicePrvdr" Type="Edm.String" MaxLength="40" sap:label="ID de pagamento" sap:quickinfo="Pagamentos digitais: ID pagamento de forn.serviços pagamento"/>
+                <Property Name="TransactionByPaytSrvcPrvdr" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="ID transação FSP" sap:quickinfo="Pagamentos digitais da SAP: ID de transação de FSP"/>
+                <Property Name="MerchantByClearingHouse" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="ID negociante" sap:quickinfo="Pagamento eletrônico: ID do negociante na câmara compensação"/>
+                <Property Name="MaximumToBeAuthorizedAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="AuthorizationCurrency" sap:label="Val.doc.faturamento" sap:quickinfo="Valor a faturar/calcular na data do prog./plano faturamento"/>
+                <Property Name="PaytPlnForAuthorizationItem" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Plano superior" sap:quickinfo="Nº progr.faturamento/PlnPgtoPrest.superior" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PaytPlnItmForAuthorizationItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Item superior" sap:quickinfo="Item superior do programa de faturamento" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_SalesOrder" Relationship="API_SALES_ORDER_SRV.assoc_11F73D17E966CAF8365A0A85432C45F3" FromRole="FromRole_assoc_11F73D17E966CAF8365A0A85432C45F3" ToRole="ToRole_assoc_11F73D17E966CAF8365A0A85432C45F3"/>
+            </EntityType>
+            <ComplexType Name="FunctionResult">
+                <Property Name="Boolean" Type="Edm.Boolean" Nullable="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <Association Name="assoc_3BF40B19B8B1DF0736F165DBAFECEE42" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPrElementType" Multiplicity="1" Role="FromRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42"/>
+            </Association>
+            <Association Name="assoc_0FC12A865A38C45D885A046A7BD1FA20" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPrElementType" Multiplicity="1" Role="FromRole_assoc_0FC12A865A38C45D885A046A7BD1FA20"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="ToRole_assoc_0FC12A865A38C45D885A046A7BD1FA20"/>
+            </Association>
+            <Association Name="assoc_8F721694C94560109555442071763439" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderHeaderPartnerType" Multiplicity="1" Role="FromRole_assoc_8F721694C94560109555442071763439"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_8F721694C94560109555442071763439"/>
+            </Association>
+            <Association Name="assoc_E0F0B75CE5743C11AC56990C6083E0BA" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="FromRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderHeaderPartnerType" Multiplicity="*" Role="ToRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA"/>
+            </Association>
+            <Association Name="assoc_44F7AAFBAB4403914DD21D2B054AE91D" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="FromRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D"/>
+                <End Type="API_SALES_ORDER_SRV.A_SlsOrdPaymentPlanItemDetailsType" Multiplicity="*" Role="ToRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D"/>
+            </Association>
+            <Association Name="assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="FromRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderHeaderPrElementType" Multiplicity="*" Role="ToRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21"/>
+            </Association>
+            <Association Name="assoc_D06EF7DEC5E9B78C200493F21B05A94E" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="FromRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderTextType" Multiplicity="*" Role="ToRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E"/>
+            </Association>
+            <Association Name="assoc_42CCE6159E335C5B7697EE6BC8D37107" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="FromRole_assoc_42CCE6159E335C5B7697EE6BC8D37107"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="*" Role="ToRole_assoc_42CCE6159E335C5B7697EE6BC8D37107"/>
+            </Association>
+            <Association Name="assoc_802E52C3F27DB910494E51738146B8F5" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemTextType" Multiplicity="1" Role="FromRole_assoc_802E52C3F27DB910494E51738146B8F5"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_802E52C3F27DB910494E51738146B8F5"/>
+            </Association>
+            <Association Name="assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemTextType" Multiplicity="1" Role="FromRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="ToRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0"/>
+            </Association>
+            <Association Name="assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPartnerType" Multiplicity="1" Role="FromRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00"/>
+            </Association>
+            <Association Name="assoc_2E7827BA025D2DC7290DEA3E71FF39FB" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPartnerType" Multiplicity="1" Role="FromRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="ToRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB"/>
+            </Association>
+            <Association Name="assoc_9211CD1FA0A3B03DDB30735294259743" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderTextType" Multiplicity="1" Role="FromRole_assoc_9211CD1FA0A3B03DDB30735294259743"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_9211CD1FA0A3B03DDB30735294259743"/>
+            </Association>
+            <Association Name="assoc_5EBE73B545500EE6B48597931F7D5C56" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_5EBE73B545500EE6B48597931F7D5C56"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPartnerType" Multiplicity="*" Role="ToRole_assoc_5EBE73B545500EE6B48597931F7D5C56"/>
+            </Association>
+            <Association Name="assoc_A18E7EFDF1ADD05474B187D10B62BDBF" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemPrElementType" Multiplicity="*" Role="ToRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF"/>
+            </Association>
+            <Association Name="assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD"/>
+            </Association>
+            <Association Name="assoc_31BB747044FCC7AA5DA94B21FD458954" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_31BB747044FCC7AA5DA94B21FD458954"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderScheduleLineType" Multiplicity="*" Role="ToRole_assoc_31BB747044FCC7AA5DA94B21FD458954"/>
+            </Association>
+            <Association Name="assoc_3604F4165550FA74B882A4F3345D936F" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_3604F4165550FA74B882A4F3345D936F"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemTextType" Multiplicity="*" Role="ToRole_assoc_3604F4165550FA74B882A4F3345D936F"/>
+            </Association>
+            <Association Name="assoc_37E221CD63CCF5D7D08C53526ADAFCCC" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderItemType" Multiplicity="1" Role="FromRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderValAddedSrvcType" Multiplicity="*" Role="ToRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC"/>
+            </Association>
+            <Association Name="assoc_11F73D17E966CAF8365A0A85432C45F3" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SlsOrdPaymentPlanItemDetailsType" Multiplicity="1" Role="FromRole_assoc_11F73D17E966CAF8365A0A85432C45F3"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_11F73D17E966CAF8365A0A85432C45F3"/>
+            </Association>
+            <Association Name="assoc_C516ABBC5925268953A9AC7D6F836887" sap:content-version="1">
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderHeaderPrElementType" Multiplicity="1" Role="FromRole_assoc_C516ABBC5925268953A9AC7D6F836887"/>
+                <End Type="API_SALES_ORDER_SRV.A_SalesOrderType" Multiplicity="1" Role="ToRole_assoc_C516ABBC5925268953A9AC7D6F836887"/>
+            </Association>
+            <EntityContainer Name="API_SALES_ORDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="A_SalesOrder" EntityType="API_SALES_ORDER_SRV.A_SalesOrderType" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderHeaderPartner" EntityType="API_SALES_ORDER_SRV.A_SalesOrderHeaderPartnerType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderHeaderPrElement" EntityType="API_SALES_ORDER_SRV.A_SalesOrderHeaderPrElementType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderItem" EntityType="API_SALES_ORDER_SRV.A_SalesOrderItemType" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderItemPartner" EntityType="API_SALES_ORDER_SRV.A_SalesOrderItemPartnerType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderItemPrElement" EntityType="API_SALES_ORDER_SRV.A_SalesOrderItemPrElementType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderItemText" EntityType="API_SALES_ORDER_SRV.A_SalesOrderItemTextType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderScheduleLine" EntityType="API_SALES_ORDER_SRV.A_SalesOrderScheduleLineType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderText" EntityType="API_SALES_ORDER_SRV.A_SalesOrderTextType" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="A_SalesOrderValAddedSrvc" EntityType="API_SALES_ORDER_SRV.A_SalesOrderValAddedSrvcType" sap:content-version="1"/>
+                <EntitySet Name="A_SlsOrdPaymentPlanItemDetails" EntityType="API_SALES_ORDER_SRV.A_SlsOrdPaymentPlanItemDetailsType" sap:creatable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_802E52C3F27DB910494E51738146B8F5" Association="API_SALES_ORDER_SRV.assoc_802E52C3F27DB910494E51738146B8F5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemText" Role="FromRole_assoc_802E52C3F27DB910494E51738146B8F5"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_802E52C3F27DB910494E51738146B8F5"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_8F721694C94560109555442071763439" Association="API_SALES_ORDER_SRV.assoc_8F721694C94560109555442071763439" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderHeaderPartner" Role="FromRole_assoc_8F721694C94560109555442071763439"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_8F721694C94560109555442071763439"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00" Association="API_SALES_ORDER_SRV.assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemPartner" Role="FromRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_DC6F0BF95AA2ABDAA77BD5D5D7640C00"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD" Association="API_SALES_ORDER_SRV.assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_1E8A9B3CA2EE8DAD94F8F581B21EABBD"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_2E7827BA025D2DC7290DEA3E71FF39FB" Association="API_SALES_ORDER_SRV.assoc_2E7827BA025D2DC7290DEA3E71FF39FB" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemPartner" Role="FromRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB"/>
+                    <End EntitySet="A_SalesOrderItem" Role="ToRole_assoc_2E7827BA025D2DC7290DEA3E71FF39FB"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_A18E7EFDF1ADD05474B187D10B62BDBF" Association="API_SALES_ORDER_SRV.assoc_A18E7EFDF1ADD05474B187D10B62BDBF" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF"/>
+                    <End EntitySet="A_SalesOrderItemPrElement" Role="ToRole_assoc_A18E7EFDF1ADD05474B187D10B62BDBF"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_42CCE6159E335C5B7697EE6BC8D37107" Association="API_SALES_ORDER_SRV.assoc_42CCE6159E335C5B7697EE6BC8D37107" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrder" Role="FromRole_assoc_42CCE6159E335C5B7697EE6BC8D37107"/>
+                    <End EntitySet="A_SalesOrderItem" Role="ToRole_assoc_42CCE6159E335C5B7697EE6BC8D37107"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_0FC12A865A38C45D885A046A7BD1FA20" Association="API_SALES_ORDER_SRV.assoc_0FC12A865A38C45D885A046A7BD1FA20" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemPrElement" Role="FromRole_assoc_0FC12A865A38C45D885A046A7BD1FA20"/>
+                    <End EntitySet="A_SalesOrderItem" Role="ToRole_assoc_0FC12A865A38C45D885A046A7BD1FA20"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_D06EF7DEC5E9B78C200493F21B05A94E" Association="API_SALES_ORDER_SRV.assoc_D06EF7DEC5E9B78C200493F21B05A94E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrder" Role="FromRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E"/>
+                    <End EntitySet="A_SalesOrderText" Role="ToRole_assoc_D06EF7DEC5E9B78C200493F21B05A94E"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21" Association="API_SALES_ORDER_SRV.assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrder" Role="FromRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21"/>
+                    <End EntitySet="A_SalesOrderHeaderPrElement" Role="ToRole_assoc_5C52AA5C0E6EBBDD6C9EA9E0A4FFAE21"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_3BF40B19B8B1DF0736F165DBAFECEE42" Association="API_SALES_ORDER_SRV.assoc_3BF40B19B8B1DF0736F165DBAFECEE42" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemPrElement" Role="FromRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_3BF40B19B8B1DF0736F165DBAFECEE42"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_3604F4165550FA74B882A4F3345D936F" Association="API_SALES_ORDER_SRV.assoc_3604F4165550FA74B882A4F3345D936F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_3604F4165550FA74B882A4F3345D936F"/>
+                    <End EntitySet="A_SalesOrderItemText" Role="ToRole_assoc_3604F4165550FA74B882A4F3345D936F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_31BB747044FCC7AA5DA94B21FD458954" Association="API_SALES_ORDER_SRV.assoc_31BB747044FCC7AA5DA94B21FD458954" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_31BB747044FCC7AA5DA94B21FD458954"/>
+                    <End EntitySet="A_SalesOrderScheduleLine" Role="ToRole_assoc_31BB747044FCC7AA5DA94B21FD458954"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_37E221CD63CCF5D7D08C53526ADAFCCC" Association="API_SALES_ORDER_SRV.assoc_37E221CD63CCF5D7D08C53526ADAFCCC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC"/>
+                    <End EntitySet="A_SalesOrderValAddedSrvc" Role="ToRole_assoc_37E221CD63CCF5D7D08C53526ADAFCCC"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_44F7AAFBAB4403914DD21D2B054AE91D" Association="API_SALES_ORDER_SRV.assoc_44F7AAFBAB4403914DD21D2B054AE91D" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrder" Role="FromRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D"/>
+                    <End EntitySet="A_SlsOrdPaymentPlanItemDetails" Role="ToRole_assoc_44F7AAFBAB4403914DD21D2B054AE91D"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0" Association="API_SALES_ORDER_SRV.assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItemText" Role="FromRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0"/>
+                    <End EntitySet="A_SalesOrderItem" Role="ToRole_assoc_CAC77A6CEA49335D6F6A2CC8AC8469E0"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_11F73D17E966CAF8365A0A85432C45F3" Association="API_SALES_ORDER_SRV.assoc_11F73D17E966CAF8365A0A85432C45F3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SlsOrdPaymentPlanItemDetails" Role="FromRole_assoc_11F73D17E966CAF8365A0A85432C45F3"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_11F73D17E966CAF8365A0A85432C45F3"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_C516ABBC5925268953A9AC7D6F836887" Association="API_SALES_ORDER_SRV.assoc_C516ABBC5925268953A9AC7D6F836887" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderHeaderPrElement" Role="FromRole_assoc_C516ABBC5925268953A9AC7D6F836887"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_C516ABBC5925268953A9AC7D6F836887"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_E0F0B75CE5743C11AC56990C6083E0BA" Association="API_SALES_ORDER_SRV.assoc_E0F0B75CE5743C11AC56990C6083E0BA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrder" Role="FromRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA"/>
+                    <End EntitySet="A_SalesOrderHeaderPartner" Role="ToRole_assoc_E0F0B75CE5743C11AC56990C6083E0BA"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_9211CD1FA0A3B03DDB30735294259743" Association="API_SALES_ORDER_SRV.assoc_9211CD1FA0A3B03DDB30735294259743" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderText" Role="FromRole_assoc_9211CD1FA0A3B03DDB30735294259743"/>
+                    <End EntitySet="A_SalesOrder" Role="ToRole_assoc_9211CD1FA0A3B03DDB30735294259743"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5EBE73B545500EE6B48597931F7D5C56" Association="API_SALES_ORDER_SRV.assoc_5EBE73B545500EE6B48597931F7D5C56" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="A_SalesOrderItem" Role="FromRole_assoc_5EBE73B545500EE6B48597931F7D5C56"/>
+                    <End EntitySet="A_SalesOrderItemPartner" Role="ToRole_assoc_5EBE73B545500EE6B48597931F7D5C56"/>
+                </AssociationSet>
+                <FunctionImport Name="rejectApprovalRequest" ReturnType="API_SALES_ORDER_SRV.FunctionResult" m:HttpMethod="POST">
+                    <Parameter Name="SalesOrder" Type="Edm.String" Mode="In" MaxLength="11000"/>
+                </FunctionImport>
+                <FunctionImport Name="releaseApprovalRequest" ReturnType="API_SALES_ORDER_SRV.FunctionResult" m:HttpMethod="POST">
+                    <Parameter Name="SalesOrder" Type="Edm.String" Mode="In" MaxLength="11000"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderItemText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="LongText"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>LongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>LongText</PropertyPath>
+                                <PropertyPath>LongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="LongText"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>LongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>LongText</PropertyPath>
+                                <PropertyPath>LongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderValAddedSrvc" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>ValueAddedServiceLongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ValueAddedServiceLongText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrder" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads all sales order headers."/>
+                        <PropertyValue Property="LongDescription" String="Reads the header data of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads the header of a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads the header data of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Creates a sales order."/>
+                        <PropertyValue Property="LongDescription" String="Creates a sales order header using deep insert requests. This means consumers can create a sales order with all possible sub-entities (for example, header partners or items)."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Updates the header data of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the header data of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Item"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads all items of a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Reads all item data of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Item"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Creates a sales order item for a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Creates a sales order item for a specific sales order using deep insert requests. This means consumers can create an item with all possible sub-entities (for example, item partners or item texts)."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Partner"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the header partners of a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the partner data from the header of a specific sales order. Consumers must pass the sales order ID (key field). The data is relevant for all items for which no item-specific partners are maintained."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_PaymentPlanItemDetails"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the header payment plan of a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the payment plan data from the header of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_PricingElement"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the header pricing element of a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the pricing element data from the header of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Text"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the header texts of a specific sales order."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the text data from the header of a specific sales order. Consumers must pass the sales order ID (key field)."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderHeaderPartner" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the header partners of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the partner data from the headers of all sales orders in the system. The data is relevant for all items for which no item-specific partners are maintained."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads the header partners of a specific sales order and with a specific partner function."/>
+                                <PropertyValue Property="LongDescription" String="Reads the data of partners with a specific partner function from the header of a specific sales order. Consumers must pass the following key fields: sales order ID and partner function."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates the header partners of a specific sales order and with a specific partner function."/>
+                        <PropertyValue Property="LongDescription" String="Updates the data of partners with a specific partner function from the header of a specific sales order. Consumers must pass the following key fields: sales order ID and partner function."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes the header partners of a specific sales order and with a specific partner function."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the data of partners with a specific partner function from the header of a specific sales order. Consumers must pass the following key fields: sales order ID and partner function."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific header partner."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific header partner function. Consumers must pass the following key fields: partner function and the sales order ID."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderHeaderPrElement" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the header pricing elements of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the pricing element data from the headers of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads the header pricing element for a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads the pricing element data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, pricing procedure step, and pricing procedure counter."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a header pricing element for a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Updates the pricing element data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, pricing procedure step, and pricing procedure counter."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a header pricing element for a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the pricing element data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, pricing procedure step, and pricing procedure counter."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific pricing element."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific pricing element. Consumers must pass the following key fields: sales order ID, pricing procedure step, and pricing procedure counter."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads all sales order items."/>
+                        <PropertyValue Property="LongDescription" String="Reads the item data of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific sales order item."/>
+                                <PropertyValue Property="LongDescription" String="Reads the data of a specific sales order item. Consumers must pass the following key fields: sales order ID and item number."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Creates a sales order item."/>
+                        <PropertyValue Property="LongDescription" String="Creates a sales order item using a deep insert request. This means consumers can create an item with all possible sub-entities (for example, item partners or item texts)."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific sales order item."/>
+                        <PropertyValue Property="LongDescription" String="Updates the data of a specific sales order item. Consumers must pass the following key fields: sales order ID and item number."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific sales order item."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the data of a specific sales order item. Consumers must pass the following key fields: sales order ID and item number."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Partner"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the item partners of a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the partner data for a specific item of a specific sales order. Consumers must pass the following key fields: sales order ID and item number."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_PricingElement"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the pricing element of a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the pricing element data for a specific item of a specific sales order. Consumers must pass the following key fields: sales order ID and item number."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific item. Consumers must pass the following key fields: sales order ID and item number."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ScheduleLine"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the schedule lines of a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the schedule line data for a specific item. Consumers must pass the following key fields: sales order ID and item number."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Text"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the text of a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the text data for a specific item. Consumers must pass the following key fields: sales order ID and item number."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ValueAddedService"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the value-added service data for a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the value-added service data for a specific sales order item using sales order number and item number. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ValueAddedService"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Creates one or more value-added services for a specific sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Creates value-added service data for a specific sales order item that you must specify in the payload. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderItemPartner" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the item partners for all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the partner data from the items of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads the item partners of a specific item and with a specific partner function in a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads the item partners with a specific partner function of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, and partner function."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates the item partners of a specific item and with a specific partner function in a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Updates the item partners with a specific partner function of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, and partner function."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes the item partners of a specific item and with a specific partner function in a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the item partners with a specific partner function of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, and partner function."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific partner function of a sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific item partner function. Consumers must pass the following key fields: sales order ID, item number, and partner function."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrderItem"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order item for a specific partner function of a sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order item data for a specific item partner function. Consumers must pass the following key fields: sales order ID, item number, and partner function."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderItemPrElement" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the item pricing elements of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the pricing element data from the items of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads the item pricing element of a specific item and with specific pricing details in a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads an item pricing element of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, pricing procedure step, and pricing procedure counter."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates an item pricing element."/>
+                        <PropertyValue Property="LongDescription" String="Updates an item pricing element of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, pricing procedure step, and pricing procedure counter."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes an item pricing element."/>
+                        <PropertyValue Property="LongDescription" String="Deletes an item pricing element of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, pricing procedure step, and pricing procedure counter."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific pricing element."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific pricing element of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, pricing procedure step, and pricing procedure counter."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrderItem"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order item for a specific pricing element."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order item data for a specific pricing element of a specific sales order item. Consumers must pass the following key fields: sales order ID, item number, pricing procedure step, and pricing procedure counter."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderItemText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads item texts of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the text data from the items of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific item text."/>
+                                <PropertyValue Property="LongDescription" String="Reads a specific item text in a specific language. Consumers must pass the following key fields: sales order ID, item number, language, and text ID."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific item text."/>
+                        <PropertyValue Property="LongDescription" String="Updates a specific item text in a specific language. Consumers must pass the following key fields: sales order ID, sales order item number, language, and text ID."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific item text."/>
+                        <PropertyValue Property="LongDescription" String="Deletes a specific item text in a specific language. Consumers must pass the following key fields: sales order ID, item number, language, and text ID."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific text of a sales order item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific text of a specific sales order item in a specific language. Consumers must pass the following key fields: sales order ID, item number, language, and text ID."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrderItem"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order item for a specific item text."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order item data for a specific text in a specific language. Consumers must pass the following key fields: sales order ID, item number, language, and text ID."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderScheduleLine" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the schedule lines of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the schedule line data from the items of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific schedule line."/>
+                                <PropertyValue Property="LongDescription" String="Reads the schedule line data from a specific item of a specific sales order. Consumers must pass the following key fields: sales order ID, sales order item, and schedule line number."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the header texts of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the text data from the headers of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific header text for a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads the text data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, language, and text ID."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific header text for a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Updates the text data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, language, and text ID."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific header text for a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the text data from the header of a specific sales order. Consumers must pass the following key fields: sales order ID, language, and text ID."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific header text."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific header text. Consumers must pass the following key fields: sales order ID, language, and text ID."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SalesOrderValAddedSrvc" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the value-added service data of all sales orders"/>
+                        <PropertyValue Property="LongDescription" String="Reads the value-added service data of all sales order items in the system using vas type, vas subservice type. charge code and so on. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific line of a value-added service."/>
+                                <PropertyValue Property="LongDescription" String="Reads a specific line of the value-added service of a sales order item using the sales order number, item number, vas service type and vas subservice type. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Creates one or more value-added services for a specific sales order item."/>
+                        <PropertyValue Property="LongDescription" String="Creates value-added service data for a specific sales order item that you must specify in the payload. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific value-added service."/>
+                        <PropertyValue Property="LongDescription" String="Updates the data of a specific value-added service item using sales order number, item number, vas service type and vas subservice type. You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific value-added service."/>
+                        <PropertyValue Property="LongDescription" String="Delete the data of a specific value-added service item using sales order number, item number, vas service type and vas subservice type.  You can use this operation by activating the business function ISR_RETAILSYSTEM."/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="API_SALES_ORDER_SRV.API_SALES_ORDER_SRV_Entities/A_SlsOrdPaymentPlanItemDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.ReadRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Reads the payment plans of all sales orders."/>
+                        <PropertyValue Property="LongDescription" String="Reads the payment plan data from the header of all sales orders in the system."/>
+                        <PropertyValue Property="ReadByKeyRestrictions">
+                            <Record>
+                                <PropertyValue Property="Description" String="Reads a specific payment plan item of a specific sales order."/>
+                                <PropertyValue Property="LongDescription" String="Reads the payment plan data from the header of a specific sales order."/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Updates a specific payment plan item of a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Updates the payment plan data from the header of a specific sales order."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Description" String="Deletes a specific payment plan item of a specific sales order."/>
+                        <PropertyValue Property="LongDescription" String="Deletes the payment plan data from the header of a specific sales order."/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_SalesOrder"/>
+                                    <PropertyValue Property="ReadRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Description" String="Reads the sales order header for a specific payment plan item."/>
+                                            <PropertyValue Property="LongDescription" String="Reads the sales order header data for a specific payment plan item. Consumers must pass the following key fields: sales order ID and payment plan item ID."/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/sap/API_SALES_ORDER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sv-sap-s4-dev.coachit.com.br:8000/sap/opu/odata/sap/API_SALES_ORDER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

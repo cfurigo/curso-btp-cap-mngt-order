@@ -5,6 +5,36 @@ class OrdersService extends cds.ApplicationService {
   init(){
     const { 'Orders':Orders , 'Orders.Items':OrderItems } = this.entities
 
+    const { SalesOrder, Create_Order } = this.entities;
+
+    // conecta no servico remoto
+    const order = cds.connect.to('API_SALES_ORDER_SRV');
+
+    // Handle GET call
+    this.on('READ', SalesOrder, async req => {
+
+      const order = await cds.connect.to('API_SALES_ORDER_SRV');
+      return order.run(req.query);
+        
+    });
+
+
+    // Handle POST call
+    this.on(Create_Order, async(req) => {
+          /*
+      // Extrai payload referente ao Sales Order request
+      const OrderData = req.data.Order;
+
+      // Map POST request on remote service
+      const SalesOrderResponse = await order.run(INSERT.into('SalesOrderService.SalesOrder', [OrderData]));
+      
+      // Return the response
+      return SalesOrderResponse;
+          */
+         return req;
+    });
+
+
     this.after('READ', Orders, async function(data) {
 
       const orders = Array.isArray(data) ? data : [data];

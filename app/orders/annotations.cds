@@ -86,6 +86,11 @@ annotate service.Orders with @(
             CriticalityRepresentation : #WithIcon,
             ![@UI.Importance] : #High,
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'OrderService.EntityContainer/Create_Order',
+            Label : '{i18n>SyncOrderS4}',
+        },
     ],
     UI.SelectionFields : [
         buyer,
