@@ -3,145 +3,146 @@ ID: OrderManager
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: OrderManager-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: OrderManager-auth
-  - name: OrderManager-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    readiness-health-check-http-endpoint: /health
-    readiness-health-check-type: http
-  build-parameters:
-    builder: npm
-
-- name: OrderManager-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: OrderManager-db
-  parameters:
-    buildpack: nodejs_buildpack
-
-- name: OrderManager-app-deployer
-  type: com.sap.application.content
-  path: gen
-  requires:
-  - name: OrderManager-html5-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: app/
+  - name: OrderManager-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - orders.zip
-      name: orders
-      target-path: app//
-
-- name: orders
-  type: html5
-  path: app/orders
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-
-- name: OrderManager-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: OrderManager-destination
+      - name: OrderManager-auth
+      - name: OrderManager-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
     parameters:
-      content-target: true
-  - name: OrderManager-html5-repo-host
+      buildpack: nodejs_buildpack
+      readiness-health-check-http-endpoint: /health
+      readiness-health-check-type: http
+    build-parameters:
+      builder: npm
+
+  - name: OrderManager-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: OrderManager-db
     parameters:
-      service-key:
-        name: OrderManager-html5-repo-host-key      
-  - name: OrderManager-auth
+      buildpack: nodejs_buildpack
+
+  - name: OrderManager-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: OrderManager-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - artifacts:
+            - orders.zip
+          name: orders
+          target-path: app//
+
+  - name: orders
+    type: html5
+    path: app/orders
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+
+  - name: OrderManager-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: OrderManager-destination
+        parameters:
+          content-target: true
+      - name: OrderManager-html5-repo-host
+        parameters:
+          service-key:
+            name: OrderManager-html5-repo-host-key
+      - name: OrderManager-auth
+        parameters:
+          service-key:
+            name: OrderManager-auth-key
     parameters:
-      service-key:
-        name: OrderManager-auth-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Authentication: OAuth2UserTokenExchange
-          Name: OrderManager_auth
-          ServiceInstanceName: OrderManager-auth
-          ServiceKeyName: OrderManager-auth-key
-          sap.cloud.service: OrderManager
-        - Name: OrderManager_html5_repo_host
-          ServiceInstanceName: OrderManager-html5-repo-host
-          ServiceKeyName: OrderManager-html5-repo-host-key
-          sap.cloud.service: OrderManager 
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-
-resources:
-- name: OrderManager-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      tenant-mode: dedicated
-      xsappname: OrderManager-${org}-${space}
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-
-- name: OrderManager-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    config:
-      database_id: 99a8c0de-90a2-4acb-9bc6-9523e2c0eeca
-    service: hana
-    service-plan: hdi-shared
-
-- name: OrderManager-destination
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
+      content:
         instance:
           destinations:
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: OrderManager-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-    service: destination
-    service-plan: lite
-  requires:
-  - name: srv-api
+            - Authentication: OAuth2UserTokenExchange
+              Name: OrderManager_auth
+              ServiceInstanceName: OrderManager-auth
+              ServiceKeyName: OrderManager-auth-key
+              sap.cloud.service: OrderManager
+            - Name: OrderManager_html5_repo_host
+              ServiceInstanceName: OrderManager-html5-repo-host
+              ServiceKeyName: OrderManager-html5-repo-host-key
+              sap.cloud.service: OrderManager
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
 
-- name: OrderManager-html5-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
-    
+resources:
+  - name: OrderManager-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: OrderManager-${org}-${space}
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+
+  - name: OrderManager-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      config:
+        database_id: 99a8c0de-90a2-4acb-9bc6-9523e2c0eeca
+      service: hana
+      service-plan: hdi-shared
+
+  - name: OrderManager-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: OrderManager-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+      service: destination
+      service-plan: lite
+    requires:
+      - name: srv-api
+
+  - name: OrderManager-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

@@ -21,6 +21,7 @@ entity Orders : cuid, managed {
   criticality : Integer;
   netAmmount: Double; 
   qtyTotal: Integer;
+  orderSAP: String;
 }
 
 /** entidade de produtos não será persistida */

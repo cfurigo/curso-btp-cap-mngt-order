@@ -38,6 +38,11 @@ annotate service.Orders with @(
                 Value : qtyTotal,
                 Label : '{i18n>TotalQuantity}',
             },
+            {
+                $Type : 'UI.DataField',
+                Value : orderSAP,
+                Label : '{i18n>OrderSap}',
+            },
         ],
     },
     UI.Facets : [
@@ -88,8 +93,14 @@ annotate service.Orders with @(
         },
         {
             $Type : 'UI.DataFieldForAction',
-            Action : 'OrderService.EntityContainer/Create_Order',
-            Label : '{i18n>SyncOrderS4}',
+            Action : 'OrderService.Create_Order',
+            Label : '{i18n>SyncOrderS41}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : orderSAP,
+            Label : '{i18n>OrderSap}',
+            ![@UI.Importance] : #High,
         },
     ],
     UI.SelectionFields : [
@@ -399,4 +410,8 @@ annotate service.Orders.Items with {
         },
         Common.ValueListWithFixedValues : true
 )};
+
+annotate service.Orders with {
+    orderSAP @Common.FieldControl : #ReadOnly
+};
 

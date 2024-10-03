@@ -3,6 +3,7 @@ using { API_SALES_ORDER_SRV as external } from './external/API_SALES_ORDER_SRV';
 
 @path: 'service/order'
 service OrderService {
+
     @(restrict : [
         {
             grant : [ 'WRITE' ],
@@ -13,15 +14,15 @@ service OrderService {
             to : [ 'Viewer', 'Manager' ]
         }
     ])
-    entity Orders as projection on ord.Orders order by OrderNo asc;
+    entity Orders as projection on ord.Orders order by OrderNo asc actions {
+        @Common.IsActionCritical
+        action Create_Order();
+    };
     @readonly
     entity Products as projection on ord.Products;
-    @readonly
+    //@readonly
+    //@cds.persistence.skip
     entity SalesOrder as projection on external.A_SalesOrder;
-    @open
-    type object {};
-    @Common.IsActionCritical
-    action Create_Order(Order : object) returns object;
 }
 annotate OrderService.Orders with @odata.draft.enabled;
 annotate OrderService.Orders with @odata.draft.bypass;

@@ -11,6 +11,7 @@
     "@sap-cloud-sdk/util": "^3.21.0",
     "@sap/cds": "^8",
     "@sap/cds-common-content": "^2.1.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/xssec": "^4",
     "express": "^4"
   },
@@ -47,6 +48,28 @@
               ]
             }
           }
+        },
+        "API_SALES_ORDER_SRV": {
+          "kind": "odata-v2",
+          "model": "srv/external/API_SALES_ORDER_SRV",
+          "csrf": true,
+          "csrfInBatch": true,
+          "credentials": {
+            "path": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+            "destination": "S4DEMO"
+          }
+        }
+      },
+      "[hybrid]": {
+        "API_SALES_ORDER_SRV": {
+          "kind": "odata-v2",
+          "model": "srv/external/API_SALES_ORDER_SRV",
+          "csrf": true,
+          "csrfInBatch": true,
+          "credentials": {
+            "path": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+            "destination": "S4DEMO"
+          }
         }
       },
       "[production]": {
@@ -54,17 +77,19 @@
         "destinations": true,
         "db": {
           "kind": "hana"
+        },
+        "API_SALES_ORDER_SRV": {
+          "kind": "odata-v2",
+          "model": "srv/external/API_SALES_ORDER_SRV",
+          "csrf": true,
+          "csrfInBatch": true,
+          "credentials": {
+            "path": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+            "destination": "S4DEMO"
+          }
         }
       },
-      "html5-repo": true,
-      "API_SALES_ORDER_SRV": {
-        "kind": "odata-v2",
-        "model": "srv/external/API_SALES_ORDER_SRV",
-        "credentials": {
-          "path": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
-          "destination": "S4DEMO"
-        }
-      }
+      "html5-repo": true
     }
   },
   "sapux": [
